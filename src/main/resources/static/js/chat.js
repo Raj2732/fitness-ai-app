@@ -16,6 +16,87 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }, 3000); // Show after 3 seconds
 });
+// Check login status on load
+async function checkAuth() {
+    const response = await fetch('/api/auth/me');
+    const user = await response.json();
+
+    if (user) {
+        document.getElementById('tokenCount').textContent =
+            (user.tokenLimit - user.tokensUsed) + '/' + user.tokenLimit;
+    } else {
+        // Show guest options
+        guestLogin();
+    }
+}
+
+async function guestLogin() {
+    await fetch('/api/auth/guest', { method: 'POST' });
+    checkAuth();
+}
+
+function showSignupModal() {
+    const email = prompt("Enter your email:");
+    if (!email) return;
+
+    const password = prompt("Enter your password:");
+    if (!password) return;
+
+    const name = prompt("Enter your name:");
+    if (!name) return;
+
+    console.log("Sending signup request:", { email, password, name });
+
+    fetch('/api/auth/signup', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password, name })
+    })
+    .then(res => {
+        console.log("Signup response status:", res.status);
+        return res.text();
+    })
+    .then(data => {
+        console.log("Signup response data:", data);
+        alert(data);
+        if (data.includes("successful")) {
+            // Auto login after signup
+            console.log("Attempting auto-login...");
+            return fetch('/api/auth/login', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ email, password })
+            });
+        }
+    })
+    .then(res => res ? res.json() : null)
+    .then(user => {
+        if (user && user.id) {
+            console.log("Login successful:", user);
+            alert("Logged in successfully!");
+            location.reload();
+        }
+    })
+    .catch(err => {
+        console.error("Error details:", err);
+        alert("Error: " + err.message + " - Check console for details");
+    });
+}
+function updateTokenDisplay(tokensLeft, tokenLimit) {
+    const tokenSpan = document.getElementById('tokenCount');
+    if (tokenSpan) {
+        tokenSpan.textContent = tokensLeft + '/' + tokenLimit;
+    }
+}
+
+// Call this after each message
+// You'll need to modify your sendMessage function to get token info from response
+
+// Call on load
+document.addEventListener('DOMContentLoaded', function() {
+    checkAuth();
+    loadDailyTip();
+});
 
 // Message handling
 async function sendMessage() {

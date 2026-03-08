@@ -12,28 +12,27 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(unique = true, nullable = false)
+    @Column(unique = true)
     private String username;
-
-    @Column(unique = true, nullable = false)
-    private String email;
-
-    @Column(nullable = false)
-    private String password;
-
-    private String firstName;
-    private String lastName;
 
     @Column(name = "user_id", unique = true)
     private String userId;
 
+    @Column(unique = true)
+    private String email;
+
+    private String password;
+    private String name;
+    private String role; // "GUEST", "USER", "PREMIUM"
+
+    private int tokensUsed;
+    private int tokenLimit;
+    private LocalDateTime tokenResetDate;
+
     private boolean enabled = true;
-
-    @Column(name = "created_at")
-    private LocalDateTime createdAt;
-
-    @Column(name = "last_login")
-    private LocalDateTime lastLogin;
+    private boolean accountNonExpired = true;
+    private boolean accountNonLocked = true;
+    private boolean credentialsNonExpired = true;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
@@ -43,43 +42,158 @@ public class User {
     )
     private Set<Role> roles = new HashSet<>();
 
+    private LocalDateTime createdAt;
+
     // Constructors
     public User() {
         this.createdAt = LocalDateTime.now();
+        this.role = "GUEST";
+        this.tokenLimit = 10;
+        this.tokensUsed = 0;
         this.userId = "user_" + System.currentTimeMillis();
+        this.tokenResetDate = LocalDateTime.now().plusDays(1);
     }
 
     // Getters and Setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public Long getId() {
+        return id;
+    }
 
-    public String getUsername() { return username; }
-    public void setUsername(String username) { this.username = username; }
+    public void setId(Long id) {
+        this.id = id;
+    }
+    public String getUserId() {
+        return userId;
+    }
 
-    public String getEmail() { return email; }
-    public void setEmail(String email) { this.email = email; }
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-    public String getPassword() { return password; }
-    public void setPassword(String password) { this.password = password; }
+    public String getUsername() {
+        return username != null ? username : email;
+    }
 
-    public String getFirstName() { return firstName; }
-    public void setFirstName(String firstName) { this.firstName = firstName; }
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
-    public String getLastName() { return lastName; }
-    public void setLastName(String lastName) { this.lastName = lastName; }
+    public String getEmail() {
+        return email;
+    }
 
-    public String getUserId() { return userId; }
-    public void setUserId(String userId) { this.userId = userId; }
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-    public boolean isEnabled() { return enabled; }
-    public void setEnabled(boolean enabled) { this.enabled = enabled; }
+    public String getPassword() {
+        return password;
+    }
 
-    public LocalDateTime getCreatedAt() { return createdAt; }
-    public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-    public LocalDateTime getLastLogin() { return lastLogin; }
-    public void setLastLogin(LocalDateTime lastLogin) { this.lastLogin = lastLogin; }
+    public String getName() {
+        return name;
+    }
 
-    public Set<Role> getRoles() { return roles; }
-    public void setRoles(Set<Role> roles) { this.roles = roles; }
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public int getTokensUsed() {
+        return tokensUsed;
+    }
+
+    public void setTokensUsed(int tokensUsed) {
+        this.tokensUsed = tokensUsed;
+    }
+
+    public int getTokenLimit() {
+        return tokenLimit;
+    }
+
+    public void setTokenLimit(int tokenLimit) {
+        this.tokenLimit = tokenLimit;
+    }
+
+    public LocalDateTime getTokenResetDate() {
+        return tokenResetDate;
+    }
+
+    public void setTokenResetDate(LocalDateTime tokenResetDate) {
+        this.tokenResetDate = tokenResetDate;
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public boolean isAccountNonExpired() {
+        return accountNonExpired;
+    }
+
+    public void setAccountNonExpired(boolean accountNonExpired) {
+        this.accountNonExpired = accountNonExpired;
+    }
+
+    public boolean isAccountNonLocked() {
+        return accountNonLocked;
+    }
+
+    public void setAccountNonLocked(boolean accountNonLocked) {
+        this.accountNonLocked = accountNonLocked;
+    }
+
+    public boolean isCredentialsNonExpired() {
+        return credentialsNonExpired;
+    }
+
+    public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+        this.credentialsNonExpired = credentialsNonExpired;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        this.roles = roles;
+    }
+
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    // Business logic methods
+    public boolean canSendMessage() {
+        if ("PREMIUM".equals(role)) return true;
+        return tokensUsed < tokenLimit;
+    }
+
+    public void incrementTokensUsed() {
+        this.tokensUsed++;
+    }
+
+    public void resetTokens() {
+        this.tokensUsed = 0;
+        this.tokenResetDate = LocalDateTime.now().plusDays(1);
+    }
 }

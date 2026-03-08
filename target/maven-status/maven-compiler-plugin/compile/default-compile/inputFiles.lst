@@ -1,5 +1,7 @@
 /Users/adarsh/Downloads/fitness-ai-wrapper/src/main/java/com/example/fitnessaiwrapper/fitnessai/FitnessAiApplication.java
+/Users/adarsh/Downloads/fitness-ai-wrapper/src/main/java/com/example/fitnessaiwrapper/fitnessai/controller/AutoController.java
 /Users/adarsh/Downloads/fitness-ai-wrapper/src/main/java/com/example/fitnessaiwrapper/fitnessai/controller/ChatController.java
+/Users/adarsh/Downloads/fitness-ai-wrapper/src/main/java/com/example/fitnessaiwrapper/fitnessai/controller/ProfileController.java
 /Users/adarsh/Downloads/fitness-ai-wrapper/src/main/java/com/example/fitnessaiwrapper/fitnessai/model/ChatMessage.java
 /Users/adarsh/Downloads/fitness-ai-wrapper/src/main/java/com/example/fitnessaiwrapper/fitnessai/model/Role.java
 /Users/adarsh/Downloads/fitness-ai-wrapper/src/main/java/com/example/fitnessaiwrapper/fitnessai/model/User.java

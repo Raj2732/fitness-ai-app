@@ -1,9 +1,12 @@
 package com.example.fitnessaiwrapper.fitnessai.service;
 
 import com.example.fitnessaiwrapper.fitnessai.model.ChatMessage;
+import com.example.fitnessaiwrapper.fitnessai.model.User;
 import com.example.fitnessaiwrapper.fitnessai.model.UserProfile;
 import com.example.fitnessaiwrapper.fitnessai.repository.ChatMessageRepository;
 import com.example.fitnessaiwrapper.fitnessai.repository.UserProfileRepository;
+import com.example.fitnessaiwrapper.fitnessai.repository.UserRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.time.LocalDateTime;
@@ -19,19 +22,58 @@ public class FitnessAiService {
     @Autowired
     private UserProfileRepository userProfileRepository;
 
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private HttpSession session;
+
     // Self-learning knowledge base
     private Map<String, List<String>> responsePatterns = new HashMap<>();
     private Map<String, Integer> patternWeights = new HashMap<>();
     private Map<String, Integer> intentFrequency = new HashMap<>();
 
     public String generateResponse(String userId, String userMessage) {
-        UserProfile profile = userProfileRepository.findById(userId).orElse(null);
+        // Get current user from session
+        Long currentUserId = (Long) session.getAttribute("userId");
+        User user = null;
+
+        if (currentUserId != null) {
+            user = userRepository.findById(currentUserId).orElse(null);
+        }
+
+        // Check token limit
+        if (user != null && !user.canSendMessage()) {
+            return "⚠️ You've used all your free messages today! Sign up for unlimited access or wait until tomorrow.";
+        }
+
+        // If guest with no session, create temporary guest
+        if (user == null) {
+            user = new User();
+            user.setRole("GUEST");
+            user.setTokenLimit(5);
+            user = userRepository.save(user);
+            session.setAttribute("userId", user.getId());
+        }
+
+        // Increment token usage
+        user.incrementTokensUsed();
+        userRepository.save(user);
+
+        // Check if token reset needed
+        if (user.getTokenResetDate() != null && user.getTokenResetDate().isBefore(LocalDateTime.now())) {
+            user.resetTokens();
+            userRepository.save(user);
+        }
 
         // Analyze message intent
         String intent = analyzeIntent(userMessage);
 
         // Track intent frequency for learning
         intentFrequency.put(intent, intentFrequency.getOrDefault(intent, 0) + 1);
+
+        // Get user profile if exists
+        UserProfile profile = userProfileRepository.findById(userId).orElse(null);
 
         // Generate personalized response
         String response = generatePersonalizedResponse(intent, userMessage, profile);

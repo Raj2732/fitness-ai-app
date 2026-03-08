@@ -3,6 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google verification meta tag -->
+  <meta name="google-site-verification" content="-6pYPFgK7MYCCrvIiNo2_KpLjwZWbLfr18lFFBoQro0" />
   <title th:text="${pageTitle}">Fitness AI Assistant</title>
   <link rel="stylesheet" href="/css/styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -15,6 +17,20 @@
       <h2>🏋️ Fitness AI</h2>
     </div>
 
+    <!-- Auth Section - Login/Signup Buttons -->
+    <div class="auth-section" style="margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%); border-radius: 10px; text-align: center;">
+      <button onclick="showLoginModal()" style="width: 48%; padding: 10px; margin-right: 2%; background: #667eea; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">Login</button>
+      <button onclick="showSignupModal()" style="width: 48%; padding: 10px; background: #764ba2; color: white; border: none; border-radius: 5px; font-weight: bold; cursor: pointer;">Sign Up</button>
+    </div>
+
+    <!-- Token Display (hidden by default, shows after login) -->
+    <div class="token-display" id="tokenDisplay" style="display: none; margin-bottom: 20px; padding: 15px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 10px; text-align: center; color: white;">
+      <p style="margin: 0 0 10px 0;">Messages left:</p>
+      <span id="tokenCount" style="font-size: 32px; font-weight: bold; display: block; margin: 5px 0;">10</span>
+      <button onclick="upgradeToPremium()" style="background: white; color: #667eea; border: none; padding: 8px 16px; border-radius: 5px; font-weight: bold; cursor: pointer; margin-top: 10px;">Sign up for unlimited</button>
+    </div>
+
+    <!-- User Profile Button -->
     <div class="user-profile">
       <button class="profile-btn" onclick="showProfileModal()">
         <span class="profile-icon">👤</span>
@@ -22,6 +38,7 @@
       </button>
     </div>
 
+    <!-- Features Section -->
     <div class="features">
       <h3>Features</h3>
       <ul>
@@ -40,6 +57,7 @@
       </ul>
     </div>
 
+    <!-- Quick Tips Section -->
     <div class="quick-tips">
       <h3>Quick Tips</h3>
       <div class="tip-card" id="dailyTip">
@@ -76,13 +94,13 @@
       </div>
 
       <div class="input-wrapper">
-                    <textarea
-                            id="userInput"
-                            placeholder="Ask me anything about fitness..."
-                            rows="1"
-                            oninput="autoResize(this)"
-                            onkeydown="handleKeyPress(event)"
-                    ></textarea>
+        <textarea
+                id="userInput"
+                placeholder="Ask me anything about fitness..."
+                rows="1"
+                oninput="autoResize(this)"
+                onkeydown="handleKeyPress(event)"
+        ></textarea>
         <button onclick="sendMessage()" id="sendButton">
           <span>➤</span>
         </button>

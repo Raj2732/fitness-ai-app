@@ -414,3 +414,603 @@ body {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(-10px); }
 }
+/* Fix for profile modal layout */
+.modal-content {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+    color: #333;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 14px;
+    box-sizing: border-box;
+}
+
+.radio-group {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.radio-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: normal;
+    cursor: pointer;
+}
+
+/* Token display styling */
+.token-display {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.token-display p {
+    margin: 0;
+    font-size: 16px;
+}
+
+.token-display span {
+    font-size: 24px;
+    font-weight: bold;
+    display: block;
+    margin: 5px 0;
+}
+
+.token-display button {
+    background: white;
+    color: #667eea;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.token-display button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+/* Better spacing for chat */
+.chat-messages {
+    padding: 20px;
+}
+
+.message {
+    margin-bottom: 15px;
+}
+
+.message-content {
+    padding: 12px 16px;
+    line-height: 1.5;
+}
+
+.user-message .message-content {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+/* Improved input area */
+.input-wrapper textarea {
+    border: 2px solid #e0e0e0;
+    transition: all 0.3s;
+}
+
+.input-wrapper textarea:focus {
+    border-color: #667eea;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Better suggestion buttons */
+.suggestions button {
+    background: #f0f0f0;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.suggestions button:hover {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    transform: translateY(-2px);
+}
+/* Fix sidebar alignment */
+.sidebar {
+    padding: 20px 15px;
+    overflow-y: auto;
+}
+
+/* Fix auth section */
+.auth-section {
+    margin: 15px 0 !important;
+    padding: 15px !important;
+}
+
+.auth-section button {
+    font-size: 14px;
+    transition: all 0.3s;
+}
+
+.auth-section button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+/* Fix token display */
+.token-display {
+    margin: 15px 0 !important;
+    padding: 15px !important;
+}
+
+.token-display p {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.token-display span {
+    font-size: 28px;
+    margin: 5px 0;
+}
+
+.token-display button {
+    font-size: 13px;
+    padding: 6px 12px;
+}
+
+/* Fix user profile button */
+.user-profile {
+    margin: 15px 0;
+}
+
+.profile-btn {
+    padding: 12px;
+    font-size: 15px;
+}
+
+/* Fix features list */
+.features ul {
+    padding-left: 0;
+}
+
+.features li {
+    padding: 10px 12px;
+    margin: 5px 0;
+    font-size: 14px;
+}
+
+/* Fix quick tips */
+.quick-tips {
+    margin-top: 20px;
+}
+
+.tip-card {
+    padding: 12px;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+/* Fix chat area spacing */
+.chat-area {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.chat-messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+}
+
+/* Fix message bubbles */
+.message {
+    margin-bottom: 15px;
+}
+
+.message-content {
+    padding: 12px 16px;
+    font-size: 14px;
+    line-height: 1.5;
+    word-wrap: break-word;
+    max-width: 100%;
+}
+
+/* Fix input area */
+.chat-input-container {
+    padding: 15px 20px;
+    background: white;
+    border-top: 1px solid #eee;
+}
+
+.suggestions {
+    margin-bottom: 12px;
+}
+
+.suggestions button {
+    padding: 6px 12px;
+    font-size: 12px;
+    margin: 0 4px 4px 0;
+}
+
+.input-wrapper textarea {
+    padding: 12px 15px;
+    font-size: 14px;
+    border-radius: 20px;
+    max-height: 100px;
+}
+
+.input-wrapper button {
+    width: 45px;
+    height: 45px;
+}
+
+/* Fix modals */
+.modal-content {
+    max-height: 85vh;
+    overflow-y: auto;
+    padding: 25px;
+}
+
+.modal-content h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+}
+
+.radio-group {
+    gap: 12px;
+}
+
+.radio-group label {
+    font-size: 13px;
+}
+
+.save-btn {
+    padding: 12px;
+    font-size: 15px;
+    margin-top: 10px;
+}
+
+/* Fix rating modal */
+.rating-content {
+    padding: 25px;
+}
+
+.rating-content p {
+    font-size: 16px;
+    margin-bottom: 15px;
+}
+
+.stars {
+    font-size: 40px;
+    margin: 15px 0;
+}
+
+.stars span {
+    margin: 0 3px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.stars span:hover {
+    transform: scale(1.2);
+    color: #ffc107;
+}
+
+/* Mobile responsive fixes */
+@media screen and (max-width: 768px) {
+    .sidebar {
+        width: 100%;
+        padding: 15px;
+    }
+
+    .chat-area {
+        height: calc(100vh - 250px);
+    }
+
+    .modal-content {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .auth-section button {
+        padding: 8px !important;
+        font-size: 13px !important;
+    }
+
+    .token-display span {
+        font-size: 24px;
+    }
+}
+
+/* Fix scrollbars */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+/* Fix for laptop and iPad screens */
+@media screen and (min-width: 769px) and (max-width: 1200px) {
+    .sidebar {
+        width: 260px;
+        padding: 20px;
+    }
+
+    .chat-area {
+        width: calc(100% - 260px);
+    }
+
+    .message {
+        max-width: 85%;
+    }
+
+    .modal-content {
+        width: 500px;
+    }
+}
+
+/* Fix for large laptop screens */
+@media screen and (min-width: 1201px) {
+    .sidebar {
+        width: 300px;
+        padding: 25px;
+    }
+
+    .chat-area {
+        width: calc(100% - 300px);
+    }
+
+    .message {
+        max-width: 70%;
+    }
+
+    .modal-content {
+        width: 550px;
+    }
+
+    .suggestions button {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .token-display span {
+        font-size: 36px;
+    }
+}
+
+/* Fix iPad Pro and larger tablets */
+@media screen and (min-width: 1024px) and (max-width: 1366px) {
+    .sidebar {
+        width: 280px;
+    }
+
+    .chat-area {
+        width: calc(100% - 280px);
+    }
+
+    .chat-messages {
+        padding: 25px;
+    }
+
+    .message-content {
+        font-size: 15px;
+    }
+}
+
+/* Fix container layout */
+.container {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Ensure sidebar doesn't overflow */
+.sidebar {
+    overflow-y: auto;
+    height: 100vh;
+    position: relative;
+}
+
+/* Fix chat area height */
+.chat-area {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.chat-messages {
+    height: calc(100vh - 140px);
+    overflow-y: auto;
+}
+
+/* Fix input container position */
+.chat-input-container {
+    position: sticky;
+    bottom: 0;
+    background: white;
+    z-index: 10;
+}
+/* Fix radio button alignment */
+.radio-group {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.radio-group label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    cursor: pointer;
+    line-height: 1;
+    margin: 0;
+}
+
+.radio-group input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    margin: 0;
+    padding: 0;
+    accent-color: #667eea;
+    cursor: pointer;
+    position: relative;
+    top: 0;
+}
+
+/* Fix for mobile */
+@media screen and (max-width: 768px) {
+    .radio-group {
+        gap: 15px;
+        justify-content: flex-start;
+    }
+
+    .radio-group label {
+        font-size: 14px;
+    }
+
+    .radio-group input[type="radio"] {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Fix for the modal form layout */
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
+
+/* Ensure the radio buttons are vertically centered */
+.radio-group label {
+    display: flex;
+    align-items: center;
+    min-height: 30px;
+}
+/* Force fix for radio buttons */
+.radio-group {
+    display: flex !important;
+    gap: 25px !important;
+    align-items: center !important;
+    margin: 10px 0 !important;
+    flex-wrap: wrap !important;
+}
+
+.radio-group label {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-size: 15px !important;
+    cursor: pointer !important;
+    margin: 0 !important;
+    padding: 5px 0 !important;
+    line-height: normal !important;
+}
+
+.radio-group input[type="radio"] {
+    width: 18px !important;
+    height: 18px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    accent-color: #667eea !important;
+    cursor: pointer !important;
+    transform: scale(1) !important;
+    -webkit-appearance: radio !important;
+    appearance: radio !important;
+    position: relative !important;
+    top: 0 !important;
+}
+
+/* Override any existing styles */
+.modal-content .radio-group {
+    justify-content: flex-start !important;
+}
+
+.modal-content .radio-group label {
+    color: #333 !important;
+    font-weight: normal !important;
+}
+
+/* Fix for the circle alignment */
+.radio-group input[type="radio"]:checked {
+    background-color: #667eea !important;
+    border-color: #667eea !important;
+}
+
+/* Mobile fix */
+@media screen and (max-width: 768px) {
+    .radio-group {
+        gap: 15px !important;
+    }
+
+    .radio-group label {
+        font-size: 14px !important;
+    }
+
+    .radio-group input[type="radio"] {
+        width: 20px !important;
+        height: 20px !important;
+    }
+}

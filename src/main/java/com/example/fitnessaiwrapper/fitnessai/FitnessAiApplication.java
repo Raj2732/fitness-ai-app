@@ -7,7 +7,5 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FitnessAiApplication {
     public static void main(String[] args) {
         SpringApplication.run(FitnessAiApplication.class, args);
-        System.out.println("🚀 Fitness AI Application Started!");
-        System.out.println("🌐 Open http://localhost:8080 in your browser");
     }
 }
