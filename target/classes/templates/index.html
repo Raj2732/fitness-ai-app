@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title th:text="${pageTitle}">Fitness AI Assistant</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="logo">
+      <h2>🏋️ Fitness AI</h2>
+    </div>
+
+    <div class="user-profile">
+      <button class="profile-btn" onclick="showProfileModal()">
+        <span class="profile-icon">👤</span>
+        <span>My Profile</span>
+      </button>
+    </div>
+
+    <div class="features">
+      <h3>Features</h3>
+      <ul>
+        <li onclick="showWorkoutPlanner()">
+          <span class="icon">📋</span> Workout Planner
+        </li>
+        <li onclick="showNutritionGuide()">
+          <span class="icon">🥗</span> Nutrition Guide
+        </li>
+        <li onclick="showProgress()">
+          <span class="icon">📊</span> Progress Tracker
+        </li>
+        <li onclick="showExerciseLibrary()">
+          <span class="icon">💪</span> Exercise Library
+        </li>
+      </ul>
+    </div>
+
+    <div class="quick-tips">
+      <h3>Quick Tips</h3>
+      <div class="tip-card" id="dailyTip">
+        Loading tip...
+      </div>
+    </div>
+  </aside>
+
+  <!-- Main Chat Area -->
+  <main class="chat-area">
+    <div class="chat-header">
+      <h1>Fitness AI Assistant</h1>
+      <div class="status">
+        <span class="status-indicator online"></span>
+        <span>Online</span>
+      </div>
+    </div>
+
+    <div class="chat-messages" id="chatMessages">
+      <div class="message ai-message">
+        <div class="avatar">🤖</div>
+        <div class="message-content">
+          <p>Hello! I'm your personal fitness AI assistant. How can I help you with your fitness journey today?</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="chat-input-container">
+      <div class="suggestions" id="suggestions">
+        <button onclick="sendSuggestion('Give me a workout plan')">Workout plan</button>
+        <button onclick="sendSuggestion('Nutrition advice')">Nutrition advice</button>
+        <button onclick="sendSuggestion('Weight loss tips')">Weight loss</button>
+        <button onclick="sendSuggestion('Muscle building')">Muscle building</button>
+      </div>
+
+      <div class="input-wrapper">
+                    <textarea
+                            id="userInput"
+                            placeholder="Ask me anything about fitness..."
+                            rows="1"
+                            oninput="autoResize(this)"
+                            onkeydown="handleKeyPress(event)"
+                    ></textarea>
+        <button onclick="sendMessage()" id="sendButton">
+          <span>➤</span>
+        </button>
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Profile Modal -->
+<div id="profileModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeProfileModal()">&times;</span>
+    <h2>Your Fitness Profile</h2>
+
+    <form id="profileForm">
+      <div class="form-group">
+        <label>Name:</label>
+        <input type="text" id="name" placeholder="Enter your name">
+      </div>
+
+      <div class="form-group">
+        <label>Age:</label>
+        <input type="number" id="age" placeholder="Your age">
+      </div>
+
+      <div class="form-group">
+        <label>Weight (kg):</label>
+        <input type="number" id="weight" step="0.1" placeholder="Your weight">
+      </div>
+
+      <div class="form-group">
+        <label>Height (cm):</label>
+        <input type="number" id="height" placeholder="Your height">
+      </div>
+
+      <div class="form-group">
+        <label>Fitness Goal:</label>
+        <select id="goal">
+          <option value="">Select your goal</option>
+          <option value="weight_loss">Weight Loss</option>
+          <option value="muscle_gain">Muscle Gain</option>
+          <option value="maintain">Maintain Fitness</option>
+          <option value="endurance">Improve Endurance</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Fitness Level:</label>
+        <div class="radio-group">
+          <label><input type="radio" name="level" value="beginner"> Beginner</label>
+          <label><input type="radio" name="level" value="intermediate"> Intermediate</label>
+          <label><input type="radio" name="level" value="advanced"> Advanced</label>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Medical Conditions (if any):</label>
+        <textarea id="conditions" placeholder="Any injuries or conditions we should know about?"></textarea>
+      </div>
+
+      <button type="button" onclick="saveProfile()" class="save-btn">Save Profile</button>
+    </form>
+  </div>
+</div>
+
+<!-- Rating Modal -->
+<div id="ratingModal" class="rating-modal">
+  <div class="rating-content">
+    <p>Rate this response:</p>
+    <div class="stars">
+      <span onclick="rateResponse(1)">★</span>
+      <span onclick="rateResponse(2)">★</span>
+      <span onclick="rateResponse(3)">★</span>
+      <span onclick="rateResponse(4)">★</span>
+      <span onclick="rateResponse(5)">★</span>
+    </div>
+    <button onclick="closeRatingModal()">Skip</button>
+  </div>
+</div>
+
+<script src="/js/chat.js"></script>
+</body>
+</html>

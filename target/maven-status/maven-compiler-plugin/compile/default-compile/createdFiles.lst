@@ -1,0 +1,16 @@
+com/example/fitnessaiwrapper/fitnessai/model/ChatMessage.class
+com/example/fitnessaiwrapper/fitnessai/service/FitnessAiService.class
+com/example/fitnessaiwrapper/fitnessai/repository/RoleRepository.class
+com/example/fitnessaiwrapper/fitnessai/security/CustomUserDetailsService.class
+com/example/fitnessaiwrapper/fitnessai/controller/ChatController$ChatRequest.class
+com/example/fitnessaiwrapper/fitnessai/model/UserProfile.class
+com/example/fitnessaiwrapper/fitnessai/controller/ChatController$ChatResponse.class
+com/example/fitnessaiwrapper/fitnessai/controller/ChatController$RatingRequest.class
+com/example/fitnessaiwrapper/fitnessai/repository/UserRepository.class
+com/example/fitnessaiwrapper/fitnessai/controller/ChatController.class
+com/example/fitnessaiwrapper/fitnessai/security/SecurityConfig.class
+com/example/fitnessaiwrapper/fitnessai/model/User.class
+com/example/fitnessaiwrapper/fitnessai/repository/ChatMessageRepository.class
+com/example/fitnessaiwrapper/fitnessai/model/Role.class
+com/example/fitnessaiwrapper/fitnessai/repository/UserProfileRepository.class
+com/example/fitnessaiwrapper/fitnessai/FitnessAiApplication.class
