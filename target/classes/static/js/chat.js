@@ -307,3 +307,43 @@ function showProgress() {
 function showExerciseLibrary() {
     sendSuggestion("Show me exercises for different muscle groups");
 }
+
+// Mobile menu toggle function - ADD HERE
+function toggleSidebar() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('show');
+
+    let overlay = document.querySelector('.sidebar-overlay');
+    if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.className = 'sidebar-overlay';
+        overlay.onclick = function() {
+            sidebar.classList.remove('show');
+            this.remove();
+        };
+        document.body.appendChild(overlay);
+    } else {
+        overlay.remove();
+    }
+}
+
+// Close sidebar when clicking outside
+document.addEventListener('click', function(e) {
+    const sidebar = document.querySelector('.sidebar');
+    const toggle = document.querySelector('.mobile-menu-toggle');
+
+    if (window.innerWidth <= 768) {
+        if (!sidebar.contains(e.target) && !toggle.contains(e.target) && sidebar.classList.contains('show')) {
+            sidebar.classList.remove('show');
+            const overlay = document.querySelector('.sidebar-overlay');
+            if (overlay) overlay.remove();
+        }
+    }
+});
+
+// Fix for iOS zoom
+if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
+    document.querySelectorAll('input, textarea, select').forEach(el => {
+        el.style.fontSize = '16px';
+    });
+}
