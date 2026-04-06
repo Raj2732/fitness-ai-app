@@ -27,7 +27,7 @@ A custom AI assistant that acts as a 24/7 fitness coach.
 
 | Component | Technology |
 | :--- | :--- |
-| **Language** | Python / Java |
+| **Language** | Python / Java / java script/ css|
 | **Data Engine** | Pandas, NumPy |
 | **AI/ML** | Scikit-learn (for predictive modeling) |
 | **Database** | SQLite3 / PostgreSQL (via DB-API) |
